@@ -37,11 +37,13 @@
       }, 200);
     </script>
     <script>
-      // Music player initialization
+      // Music player initialization with better error handling
       function initMusic() {
-        const audio = new Audio('music.mp3');
+        const audio = new Audio();
+        audio.src = '/music.mp3';
         audio.volume = 0.02;
         audio.loop = true;
+        audio.crossOrigin = 'anonymous';
         
         const playMusic = () => {
           audio.play().catch(err => {
@@ -134,6 +136,3 @@
     <div id="root"></div>
   </body>
 </html>
-
-
-live
