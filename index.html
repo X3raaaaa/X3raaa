@@ -1,18 +1,139 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <link rel="icon" type="image/png" href="https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310419663031909763/WuBFqSmbhdUfVnJg.png" />
     <link rel="apple-touch-icon" href="https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310419663031909763/WuBFqSmbhdUfVnJg.png" />
     <title>x3raa</title>
+    <script>
+      const baseTitle = 'x3raa';
+      const errorCode = 'XDF92KQWBTLM';
+      const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+      
+      function getRandomGlitchChar() {
+        return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+      }
+      
+      function glitchWithError() {
+        let glitched = '';
+        for (let i = 0; i < baseTitle.length; i++) {
+          glitched += Math.random() > 0.6 ? getRandomGlitchChar() : baseTitle[i];
+        }
+        return glitched + ' [' + errorCode + ']';
+      }
+      
+      let showError = false;
+      setInterval(() => {
+        if (showError) {
+          document.title = glitchWithError();
+        } else {
+          document.title = baseTitle;
+        }
+        showError = !showError;
+      }, 200);
+    </script>
+    <script>
+      // Music player initialization
+      function initMusic() {
+        const audio = new Audio('music.mp3');
+        audio.volume = 0.02;
+        audio.loop = true;
+        
+        const playMusic = () => {
+          audio.play().catch(err => {
+            console.log('Autoplay prevented, will play on user interaction');
+          });
+        };
+        
+        // Play on first click
+        document.addEventListener('click', playMusic, { once: true });
+        
+        // Auto-play after 2.5 seconds
+        setTimeout(playMusic, 2500);
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMusic);
+      } else {
+        initMusic();
+      }
+    </script>
     <script type="module" crossorigin src="/assets/index-PPm2lbj9.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-C0dQg4ky.css">
     <script>
-const bioTexts=['Get money, live life.','Stay loyal, move silent.','Chase goals, not people.'];let currentTextIndex=0,isDeleting=false,displayText='',charIndex=0;function updateBioText(){const currentText=bioTexts[currentTextIndex];const bioElement=document.querySelector('.bio-description');if(!bioElement){setTimeout(updateBioText,100);return;}bioElement.style.minHeight=(bioElement.scrollHeight||24)+'px';if(!isDeleting){if(charIndex<currentText.length){displayText+=currentText[charIndex];charIndex++;bioElement.textContent=displayText;setTimeout(updateBioText,40);}else{setTimeout(()=>{isDeleting=true;updateBioText();},3000);}}else{if(charIndex>0){charIndex--;displayText=displayText.substring(0,charIndex);bioElement.textContent=displayText;setTimeout(updateBioText,40);}else{isDeleting=false;currentTextIndex=(currentTextIndex+1)%bioTexts.length;charIndex=0;displayText='';setTimeout(updateBioText,300);}}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',updateBioText);}else{updateBioText();}const baseTitle='x3raa',errorCode='XDF92KQWBTLM',glitchChars='!@#$%^&*()_+-=[]{}|;:,.<>?/~`';function getRandomGlitchChar(){return glitchChars[Math.floor(Math.random()*glitchChars.length)];}function glitchWithError(){let glitched='';for(let i=0;i<baseTitle.length;i++){glitched+=Math.random()>0.6?getRandomGlitchChar():baseTitle[i];}return glitched+' ['+errorCode+']';}let showError=false;setInterval(()=>{if(showError){document.title=glitchWithError();}else{document.title=baseTitle;}showError=!showError;},200);
+      const bioTexts = [
+        'Get money, live life.',
+        'Stay loyal, move silent.',
+        'Chase goals, not people.'
+      ];
+      
+      let currentTextIndex = 0;
+      let isDeleting = false;
+      let displayText = '';
+      let charIndex = 0;
+      const maxTextLength = Math.max(...bioTexts.map(t => t.length));
+      
+      function updateBioText() {
+        const currentText = bioTexts[currentTextIndex];
+        const bioElement = document.querySelector('.bio-description');
+        
+        if (!bioElement) {
+          setTimeout(updateBioText, 100);
+          return;
+        }
+        
+        // Set min-height to prevent box size change
+        bioElement.style.minHeight = (bioElement.scrollHeight || 24) + 'px';
+        
+        if (!isDeleting) {
+          // Typing forward
+          if (charIndex < currentText.length) {
+            displayText += currentText[charIndex];
+            charIndex++;
+            bioElement.textContent = displayText;
+            setTimeout(updateBioText, 40);
+          } else {
+            // Finished typing, wait 3 seconds then start deleting
+            setTimeout(() => {
+              isDeleting = true;
+              updateBioText();
+            }, 3000);
+          }
+        } else {
+          // Deleting backward
+          if (charIndex > 0) {
+            charIndex--;
+            displayText = displayText.substring(0, charIndex);
+            bioElement.textContent = displayText;
+            setTimeout(updateBioText, 40);
+          } else {
+            // Finished deleting, move to next text
+            isDeleting = false;
+            currentTextIndex = (currentTextIndex + 1) % bioTexts.length;
+            charIndex = 0;
+            displayText = '';
+            setTimeout(updateBioText, 300);
+          }
+        }
+      }
+      
+      // Start the animation when page loads
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateBioText);
+      } else {
+        updateBioText();
+      }
     </script>
   </head>
+
   <body>
     <div id="root"></div>
   </body>
 </html>
+
+
+live
